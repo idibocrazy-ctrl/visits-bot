@@ -18,19 +18,15 @@ bot = commands.Bot(
 
 @bot.event
 async def on_ready():
-
     print(f"Logged in as {bot.user}")
 
 @bot.command(name="visits")
 async def visits(ctx, uid: str, region: str):
 
-     api_url =f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
-
+    api_url = f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
 
     async with aiohttp.ClientSession() as session:
-
         async with session.get(api_url) as response:
-
             data = await response.json()
 
     embed = discord.Embed(
@@ -47,24 +43,42 @@ async def visits(ctx, uid: str, region: str):
     embed.add_field(
         name="Region",
         value=data.get("region", "N/A"),
-        inline=False
+        inline=True
     )
 
     embed.add_field(
-        name="Player UID",
-        value=uid,
-        inline=False
+        name="UID",
+        value=data.get("uid", uid),
+        inline=True
     )
 
     embed.add_field(
         name="Level",
         value=data.get("level", "N/A"),
-        inline=False
+        inline=True
     )
 
     embed.add_field(
         name="Likes",
         value=data.get("likes", "0"),
+        inline=True
+    )
+
+    embed.add_field(
+        name="Success",
+        value=data.get("success", "0"),
+        inline=True
+    )
+
+    embed.add_field(
+        name="Fail",
+        value=data.get("fail", "0"),
+        inline=True
+    )
+
+    embed.add_field(
+        name="Credit",
+        value=data.get("credit", "N/A"),
         inline=False
     )
 
