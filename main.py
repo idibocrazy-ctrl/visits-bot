@@ -24,7 +24,8 @@ async def on_ready():
 @bot.command(name="visits")
 async def visits(ctx, uid: str, region: str):
 
-    api_url =f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
+     api_url =f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
+
 
     async with aiohttp.ClientSession() as session:
 
@@ -58,16 +59,16 @@ async def visits(ctx, uid: str, region: str):
     embed.add_field(
         name="Level",
         value=data.get("level", "N/A"),
-        inline=False 
-   )
+        inline=False
+    )
 
     embed.add_field(
-        name="Success",
-        value=data.get("success", "N/A"),
-        inline=False 
- 
+        name="Likes",
+        value=data.get("likes", "0"),
+        inline=False
     )
-         embed.set_footer(
+
+    embed.set_footer(
         text="DEVELOPED BY DIBOXE LEGIT"
     )
 
