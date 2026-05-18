@@ -3,22 +3,28 @@ from discord.ext import commands
 import aiohttp
 import os
 from dotenv import load_dotenv
-import asyncio
-from aiohttp import web
+
+load_dotenv()
 
 TOKEN = os.getenv("TOKEN")
 
 intents = discord.Intents.default()
-bot = commands.Bot(command_prefix="!", intents=intents)
+intents.message_content = True
+
+bot = commands.Bot(
+    command_prefix="!",
+    intents=intents
+)
 
 @bot.event
 async def on_ready():
+
     print(f"Logged in as {bot.user}")
 
 @bot.command(name="visits")
-async def visits(ctx, uid: str):
+async def visits(ctx, uid: str, region: str):
 
-    api_url = f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
+    api_url =f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
 
     async with aiohttp.ClientSession() as session:
 
@@ -61,7 +67,9 @@ async def visits(ctx, uid: str):
         inline=False
     )
 
-    embed.set_footer(text="DEVELOPED BY DIBOXE LEGIT")
+    embed.set_footer(
+        text="DEVELOPED BY DIBOXE LEGIT"
+    )
 
     await ctx.send(embed=embed)
 
