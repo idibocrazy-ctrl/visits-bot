@@ -82,7 +82,9 @@ async def visits(ctx, uid: str, region: str):
         inline=False
     )
 
-    embed.set_footer(
+    # embed.set_image(url="https://ibb.co/6kLpTh1/standard (8).gif")
+            file = discord.File("assets/standard (8).gif", filename="standard (8).gif")
+            embed.set_image(url="attachment://standard (8).gif")
         text="DEVELOPED BY DIBOXE LEGIT"
     )
 
