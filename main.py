@@ -23,7 +23,7 @@ async def on_ready():
 @bot.command(name="visits")
 async def visits(ctx, uid: str, region: str):
 
-    api_url = f"http://np2.npcloud.online:2053/visits?uid={uid}&region={region}"
+    api_url = f"http://np2.npcloud.online:2007/visits?uid={uid}&region={region}"
 
     async with aiohttp.ClientSession() as session:
         async with session.get(api_url) as response:
