@@ -82,11 +82,7 @@ async def visits(ctx, uid: str, region: str):
             inline=True
         )
 
-        embed.add_field(
-            name="Credit",
-            value=data.get("credit", "N/A"),
-            inline=False
-        )
+
 
         # Attach GIF
         file = discord.File(
